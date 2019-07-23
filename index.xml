@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Joe Graham</title>
+    <link>http://joegraham.co/</link>
+    <description>Recent content on Joe Graham</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 21 Jul 2019 16:55:44 -0400</lastBuildDate>
+    
+	<atom:link href="http://joegraham.co/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About Me</title>
+      <link>http://joegraham.co/about/</link>
+      <pubDate>Sun, 21 Jul 2019 16:55:44 -0400</pubDate>
+      
+      <guid>http://joegraham.co/about/</guid>
+      <description>Joe Graham Joe is a recent graduate of the Rochester Institute of Technology with a BS/MS in Computing Security. He has worked with organizations in both the private and public sector performing jobs ranging from systems administration to cybersecurity research in multiple domains. His interests lie in penetration testing and offensive security, especially with regards to networking devices like routers and firewalls.
+During his time at RIT, Joe has been active within the university&amp;rsquo;s various cybersecurity organizations: RITSEC (formerly the RIT Cybersecurity Club (RC3) and the Security Practices and Research Student Association), and the Collegiate Cyber Defense Competition team as a competitor and as an assistant coach.</description>
+    </item>
+    
+    <item>
+      <title>Hello!</title>
+      <link>http://joegraham.co/posts/first/</link>
+      <pubDate>Sun, 21 Jul 2019 11:09:28 -0400</pubDate>
+      
+      <guid>http://joegraham.co/posts/first/</guid>
+      <description>Hello! My name is Joe Graham, and welcome to my blog! I am a cybersecurity professional who specializes in penetration testing and offensive security. I plan to include things like HackTheBox write-ups and posts about penetration testing or participating in bug bounties/vulnerability disclosure. Thanks for visiting!</description>
+    </item>
+    
+  </channel>
+</rss>
