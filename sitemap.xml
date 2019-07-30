@@ -3,34 +3,34 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://joegraham.co/about/</loc>
+    <loc>https://joegraham.co/about/</loc>
     <lastmod>2019-07-21T16:55:44-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://joegraham.co/</loc>
+    <loc>https://joegraham.co/</loc>
     <lastmod>2019-07-21T16:55:44-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://joegraham.co/posts/first/</loc>
+    <loc>https://joegraham.co/posts/first/</loc>
     <lastmod>2019-07-21T11:09:28-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://joegraham.co/posts/</loc>
+    <loc>https://joegraham.co/posts/</loc>
     <lastmod>2019-07-21T11:09:28-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://joegraham.co/categories/</loc>
+    <loc>https://joegraham.co/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://joegraham.co/tags/</loc>
+    <loc>https://joegraham.co/tags/</loc>
     <priority>0</priority>
   </url>
   
