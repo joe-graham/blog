@@ -3,25 +3,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://joegraham.co/posts/cve_2019_1576/</loc>
+    <lastmod>2019-07-22T17:15:07-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joegraham.co/</loc>
+    <lastmod>2019-07-22T17:15:07-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://joegraham.co/posts/</loc>
+    <lastmod>2019-07-22T17:15:07-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://joegraham.co/about/</loc>
     <lastmod>2019-07-21T16:55:44-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joegraham.co/</loc>
-    <lastmod>2019-07-21T16:55:44-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://joegraham.co/posts/first/</loc>
     <lastmod>2019-07-21T11:09:28-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://joegraham.co/posts/</loc>
-    <lastmod>2019-07-21T11:09:28-04:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

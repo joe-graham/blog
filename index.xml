@@ -6,10 +6,19 @@
     <description>Recent content on Joe Graham</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 Jul 2019 16:55:44 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jul 2019 17:15:07 -0400</lastBuildDate>
     
 	<atom:link href="https://joegraham.co/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CVE-2019-1576: PAN-OS Command Injection/Shell Escape</title>
+      <link>https://joegraham.co/posts/cve_2019_1576/</link>
+      <pubDate>Mon, 22 Jul 2019 17:15:07 -0400</pubDate>
+      
+      <guid>https://joegraham.co/posts/cve_2019_1576/</guid>
+      <description>Earlier this year I was helping RIT&amp;rsquo;s Collegiate Cyber Defense Competition (CCDC) team prepare to compete at the national competition by looking into possible attack vectors that the red team would be using to exploit the team&amp;rsquo;s infrastructure and how to defend against those attacks. Nick O&amp;rsquo;Brien and I decided to look into the Palo Alto Networks virtual firewall product to find potential pain points for the team, as PAN has been a sponsor for the competition for the last few years and has frequently provided equipment and VMs to teams for use during the competition.</description>
+    </item>
     
     <item>
       <title>About Me</title>
