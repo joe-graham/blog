@@ -141,7 +141,7 @@ executable to perform pings over the management interface of the appliance. The 
 
 <p><center>
 <a href="https://joegraham.co/posts/cve_2019_1576/ping.png" data-lightbox="ping" data-title="Injection attempt thwarted by proper input sanitiziation in ping command.">
-<img src="http://localhost:1313/posts/cve_2019_1576/ping_thumb.png" alt="Ping injection attempt failing" /></a>
+<img src="https://joegraham.co/posts/cve_2019_1576/ping_thumb.png" alt="Ping injection attempt failing" /></a>
 </center></p>
 
 <p>However, some features of the less command were overlooked. The less utility is used to read files and ships with most versions of Linux. A command with the
@@ -149,7 +149,7 @@ same name in the PAN-OS CLI is used to read debug files or logs and calls the /u
 
 <p><center>
 <a href="https://joegraham.co/posts/cve_2019_1576/less_1.png" data-lightbox="less_1" data-title="Normal view of what opening a file looks like in less.">
-<img src="http://localhost:1313/posts/cve_2019_1576/less_1_thumb.png" alt="Normal less view" /></a>
+<img src="https://joegraham.co/posts/cve_2019_1576/less_1_thumb.png" alt="Normal less view" /></a>
 </center></p>
 
 <p>Most editors or file browsers allow users to call other binaries directly from within them by typing an ! with the command to run following it. This can allow a user to call the
@@ -157,7 +157,7 @@ bash shell, escaping out of the PAN CLI.</p>
 
 <p><center>
 <a href="https://joegraham.co/posts/cve_2019_1576/less_2.png" data-lightbox="less_2" data-title="Escaping the PAN CLI via less.">
-<img src="http://localhost:1313/posts/cve_2019_1576/less_2_thumb.png" alt="Escaping the CLI through less" /></a>
+<img src="https://joegraham.co/posts/cve_2019_1576/less_2_thumb.png" alt="Escaping the CLI through less" /></a>
 </center></p>
 
 <p>This vulnerability <a href="https://nvd.nist.gov/vuln/detail/CVE-2019-1576">was given a 6.5 score on the CVSS 2.0 scale</a> due to the need to authenticate to exploit it.</p>
@@ -177,9 +177,9 @@ the <code>!</code> command, similar to <code>less</code>.</p>
 
 <p><center>
 <a href="https://joegraham.co/posts/cve_2019_1576/cfg_original.png" data-lightbox="cfg_original" data-title="Control flow graph of the vulnerable version of less.">
-<img src="http://localhost:1313/posts/cve_2019_1576/cfg_original_thumb.png" /></a>
+<img src="https://joegraham.co/posts/cve_2019_1576/cfg_original_thumb.png" /></a>
 <a href="https://joegraham.co/posts/cve_2019_1576/cfg_fix.png" data-lightbox="cfg_fix" data-title="Control flow graph of the patched version of less, preventing execution of the ! command.">
-<img src="http://localhost:1313/posts/cve_2019_1576/cfg_fix_thumb.png" /></a>
+<img src="https://joegraham.co/posts/cve_2019_1576/cfg_fix_thumb.png" /></a>
 </center></p>
 
 <h2 id="disclosure-timeline">Disclosure timeline</h2>
