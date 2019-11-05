@@ -1,22 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://joegraham.co/posts/cve_2019_1576/</loc>
-    <lastmod>2019-07-22T17:15:07-04:00</lastmod>
+    <loc>https://joegraham.co/tags/hack-the-box/</loc>
+    <lastmod>2019-08-05T17:31:48-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joegraham.co/posts/bastion/</loc>
+    <lastmod>2019-08-05T17:31:48-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://joegraham.co/</loc>
-    <lastmod>2019-07-22T17:15:07-04:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2019-08-05T17:31:48-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joegraham.co/tags/pentesting/</loc>
+    <lastmod>2019-08-05T17:31:48-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://joegraham.co/posts/</loc>
+    <lastmod>2019-08-05T17:31:48-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joegraham.co/tags/</loc>
+    <lastmod>2019-08-05T17:31:48-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joegraham.co/posts/cve_2019_1576/</loc>
     <lastmod>2019-07-22T17:15:07-04:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -31,12 +49,6 @@
   
   <url>
     <loc>https://joegraham.co/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://joegraham.co/tags/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>

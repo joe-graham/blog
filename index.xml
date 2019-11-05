@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Joe Graham</title>
@@ -6,10 +6,20 @@
     <description>Recent content on Joe Graham</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 22 Jul 2019 17:15:07 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 05 Aug 2019 17:31:48 -0400</lastBuildDate>
     
 	<atom:link href="https://joegraham.co/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hack The Box Write-up: Bastion</title>
+      <link>https://joegraham.co/posts/bastion/</link>
+      <pubDate>Mon, 05 Aug 2019 17:31:48 -0400</pubDate>
+      
+      <guid>https://joegraham.co/posts/bastion/</guid>
+      <description>This is my first in a series of write-ups on systems I&amp;rsquo;ve successfully exploited on HackTheBox. Bastion is a Windows host that at the time of writing has been rated fairly easy by other hackers, which was my experience as well. However, this system was still a fun system to exploit with a novel way of getting user access.
+Enumeration First things first, let&amp;rsquo;s nmap the box to see what services the box has running.</description>
+    </item>
     
     <item>
       <title>CVE-2019-1576: PAN-OS Command Injection/Shell Escape</title>
