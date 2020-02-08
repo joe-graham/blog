@@ -3,17 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://joegraham.co/</loc>
+    <lastmod>2020-02-08T17:36:09-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joegraham.co/press_releases/</loc>
+    <lastmod>2020-02-08T17:36:09-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://joegraham.co/tags/hack-the-box/</loc>
     <lastmod>2019-08-30T16:06:17-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://joegraham.co/posts/networked/</loc>
-    <lastmod>2019-08-30T16:06:17-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://joegraham.co/</loc>
     <lastmod>2019-08-30T16:06:17-04:00</lastmod>
   </url>
   
