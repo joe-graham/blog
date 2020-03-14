@@ -158,7 +158,7 @@ a <code>Command not available (press RETURN)</code> error message, preventing co
 less that would also result in either command execution or arbitrary reads of the filesystem.</p>
 <p>Looking at the relevant portion of the control flow graph for the less binary in Binary Ninja, which is at address <code>0x406d60</code> in the patched version and address <code>0x4077d9</code> in
 the vulnerable version, we can see that a new flow has been added to the large switch statement used to respond to the various commands that can be issued from
-within less. I had some trouble going reversing this portion of the code, as this is a fairly complex switch statement, but I was able to figure out using the
+within less. I had some trouble reversing this portion of the code, as this is a fairly complex switch statement, but I was able to figure out using the
 help text used when issuing the <code>:h</code> command within less that <code>:e</code>, <code>^X^V</code>, and <code>:v</code> are no longer valid commands. <code>:e</code> and <code>^X^V</code> allow the user to open other files
 within less, and <code>:v</code> opens the current file in <code>vi</code>. <code>vi</code> allows users to run arbitrary commands using
 the <code>!</code> command, similar to <code>less</code>.</p>
