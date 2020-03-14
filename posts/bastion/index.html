@@ -55,7 +55,7 @@
     <link rel="icon" type="image/png" href="https://joegraham.co/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://joegraham.co/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="generator" content="Hugo 0.67.0" />
   </head>
 
   <body class=" ">
@@ -121,12 +121,12 @@
       </header>
 
       <div>
-        <p>This is my first in a series of write-ups on systems I've successfully exploited on HackTheBox.
+        <p>This is my first in a series of write-ups on systems I&rsquo;ve successfully exploited on HackTheBox.
 Bastion is a Windows host that at the time of writing has been rated fairly easy by other hackers,
 which was my experience as well. However, this system was still a fun system to exploit with a novel
 way of getting user access.</p>
 <h1 id="enumeration">Enumeration</h1>
-<p>First things first, let's nmap the box to see what services the box has running.</p>
+<p>First things first, let&rsquo;s nmap the box to see what services the box has running.</p>
 <pre><code>root@kali:bastion# nmap -p- -sV 10.10.10.134
 Starting Nmap 7.70 ( https://nmap.org ) at 2019-08-05 20:49 EDT
 Nmap scan report for 10.10.10.134
@@ -152,8 +152,8 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 100.64 seconds
 </code></pre><p>One of the first things that stands out to me is that this host has OpenSSH listening on port 22.
 <a href="https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview">Microsoft</a>
-recently integrated OpenSSH into Windows, but this is the first time I've seen it running as a service
-on a Windows host in the wild. We can't do anything with SSH right now, but this does indicate that this
+recently integrated OpenSSH into Windows, but this is the first time I&rsquo;ve seen it running as a service
+on a Windows host in the wild. We can&rsquo;t do anything with SSH right now, but this does indicate that this
 host is a Windows 10 or Windows Server 2016 or 2019 box, since OpenSSH is only available on this flavor of
 Windows. We will come back to this service later on in the write-up.</p>
 <h1 id="smb">SMB</h1>
@@ -166,10 +166,10 @@ Starting enum4linux v0.8.9 ( http://labs.portcullis.co.uk/application/enum4linux
 
 --snip--
 [E] Server doesn't allow session using username '', password ''. Aborting remainder of tests.
-</code></pre><p>Unfortunately, anonymous access didn't get us anything. It has, thankfully, gotten progressively more
+</code></pre><p>Unfortunately, anonymous access didn&rsquo;t get us anything. It has, thankfully, gotten progressively more
 difficult to set up anonymous SMB shares in Windows over the years, so this is pretty realistic.
 One other thing I like to try to enumerate access is by using the built-in Guest account with no
-password. Let's give that a shot.</p>
+password. Let&rsquo;s give that a shot.</p>
 <pre><code>root@kali:smb# enum4linux -u Guest 10.10.10.134
 Starting enum4linux v0.8.9 ( http://labs.portcullis.co.uk/application/enum4linux/ ) on Mon Aug  5 21:01:33 2019
 
@@ -218,9 +218,9 @@ Reconnecting with SMB1 for workgroup listing.
 Failed to connect with SMB1 -- no workgroup available
 
 --snip--
-</code></pre><p>I didn't expect to be able to access the default administrative shares (ADMIN$, C$, and IPC$), and
+</code></pre><p>I didn&rsquo;t expect to be able to access the default administrative shares (ADMIN$, C$, and IPC$), and
 attempting to connect using smbclient confirmed that. However, the Backups share seems interesting
-to us. Let's see what's inside that share.</p>
+to us. Let&rsquo;s see what&rsquo;s inside that share.</p>
 <pre><code>root@kali:smb# smbclient -U Guest //10.10.10.134/Backups
 Enter WORKGROUP\Guest's password: 
 Try &quot;help&quot; to get a list of possible commands.
@@ -241,7 +241,7 @@ read/write access on the share, which are left behind because the Guest user can
 files on the share, not delete them. <code>note.txt</code> contains the following text: <code>Sysadmins: please don't transfer the entire backup file locally, the VPN to the subsidiary office is too slow.</code>
 I believe this is a hint to help transfer files that we find later on. Looking further into the
 WindowsImageBackup folder, there appears to be a single backup for the <code>L4mpje-PC</code> system performed
-on February 22, 2019. L4mpje is the name of the creator of this box, so we're on the right track.
+on February 22, 2019. L4mpje is the name of the creator of this box, so we&rsquo;re on the right track.
 Listing the contents of the directory for this backup reveals two large files, as well as some other metadata:</p>
 <pre><code>smb: \WindowsImageBackup\L4mpje-PC\Backup 2019-02-22 124351\&gt; ls
   .                                   D        0  Fri Feb 22 07:45:32 2019
@@ -261,7 +261,7 @@ Listing the contents of the directory for this backup reveals two large files, a
   cd113385-65ff-4ea2-8ced-5630f6feca8f_Writere8132975-6f93-4464-a53e-1050253ae220.xml      A  2374620  Fri Feb 22 07:45:32 2019
 
 		7735807 blocks of size 4096. 2788327 blocks available
-</code></pre><p>The two vhd's at the top are very attractive targets, but the size of the download caused timeouts that
+</code></pre><p>The two vhd&rsquo;s at the top are very attractive targets, but the size of the download caused timeouts that
 caused the download to fail at first. Using the <code>timeout</code> command and setting the value to a
 much bigger timeout allows these files to be downloaded.</p>
 <h1 id="disk-image-forensics">Disk image forensics</h1>
@@ -317,7 +317,7 @@ Microsoft Windows [Version 10.0.14393]
 (c) 2016 Microsoft Corporation. All rights reserved.
 
 l4mpje@BASTION C:\Users\L4mpje&gt;
-</code></pre><p>Looking around the system, we see there's a couple more programs installed on this box than L4mpje-PC.</p>
+</code></pre><p>Looking around the system, we see there&rsquo;s a couple more programs installed on this box than L4mpje-PC.</p>
 <pre><code>l4mpje@BASTION C:\Users\L4mpje&gt;cd ..\..
 l4mpje@BASTION C:\&gt;cd &quot;Program Files (x86)&quot;
 l4mpje@BASTION C:\Program Files (x86)&gt;dir
@@ -345,7 +345,7 @@ l4mpje@BASTION C:\Program Files (x86)&gt;dir
 </code></pre><p><a href="https://github.com/mRemoteNG/mRemoteNG">mRemoteNG</a> is an open source remote connections manager,
 similar to RoyalTS or RDCMan. You configure connections with credentials in mRemoteNG, and simplify
 connections to remote hosts. We can find the configuration data for mRemoteNG under the AppData folder
-in L4mpje's user directory.</p>
+in L4mpje&rsquo;s user directory.</p>
 <pre><code>l4mpje@BASTION C:\Program Files (x86)&gt; cd ..\Users\L4mpje\AppData\Roaming\mRemoteNG
 l4mpje@BASTION C:\Users\L4mpje\AppData\Roaming\mRemoteNG&gt;dir
  Volume in drive C has no label.

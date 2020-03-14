@@ -28,7 +28,7 @@
       
       <guid>https://joegraham.co/posts/networked/</guid>
       <description>Networked is a Linux box created by Guly that is rated fairly easily by the HTB community. Even though it was fairly easy, I got some good practice with command injection vulnerabilities and circumventing file verification methods.
-Enumeration Let&#39;s start by taking a look at what services are running on the box using nmap.
+Enumeration Let&amp;rsquo;s start by taking a look at what services are running on the box using nmap.
 Starting Nmap 7.80 ( https://nmap.org ) at 2019-08-30 16:16 EDT Nmap scan report for 10.10.10.146 Host is up (0.</description>
     </item>
     
@@ -38,8 +38,8 @@ Starting Nmap 7.80 ( https://nmap.org ) at 2019-08-30 16:16 EDT Nmap scan report
       <pubDate>Mon, 05 Aug 2019 17:31:48 -0400</pubDate>
       
       <guid>https://joegraham.co/posts/bastion/</guid>
-      <description>This is my first in a series of write-ups on systems I&#39;ve successfully exploited on HackTheBox. Bastion is a Windows host that at the time of writing has been rated fairly easy by other hackers, which was my experience as well. However, this system was still a fun system to exploit with a novel way of getting user access.
-Enumeration First things first, let&#39;s nmap the box to see what services the box has running.</description>
+      <description>This is my first in a series of write-ups on systems I&amp;rsquo;ve successfully exploited on HackTheBox. Bastion is a Windows host that at the time of writing has been rated fairly easy by other hackers, which was my experience as well. However, this system was still a fun system to exploit with a novel way of getting user access.
+Enumeration First things first, let&amp;rsquo;s nmap the box to see what services the box has running.</description>
     </item>
     
     <item>
@@ -48,7 +48,7 @@ Enumeration First things first, let&#39;s nmap the box to see what services the 
       <pubDate>Mon, 22 Jul 2019 17:15:07 -0400</pubDate>
       
       <guid>https://joegraham.co/posts/cve_2019_1576/</guid>
-      <description>Earlier this year I was helping RIT&#39;s Collegiate Cyber Defense Competition (CCDC) team prepare to compete at the national competition by looking into possible attack vectors that the red team would be using to exploit the team&#39;s infrastructure and how to defend against those attacks. Nick O&#39;Brien and I decided to look into the Palo Alto Networks virtual firewall product to find potential pain points for the team, as PAN has been a sponsor for the competition for the last few years and has frequently provided equipment and VMs to teams for use during the competition.</description>
+      <description>Earlier this year I was helping RIT&amp;rsquo;s Collegiate Cyber Defense Competition (CCDC) team prepare to compete at the national competition by looking into possible attack vectors that the red team would be using to exploit the team&amp;rsquo;s infrastructure and how to defend against those attacks. Nick O&amp;rsquo;Brien and I decided to look into the Palo Alto Networks virtual firewall product to find potential pain points for the team, as PAN has been a sponsor for the competition for the last few years and has frequently provided equipment and VMs to teams for use during the competition.</description>
     </item>
     
     <item>
@@ -57,8 +57,8 @@ Enumeration First things first, let&#39;s nmap the box to see what services the 
       <pubDate>Sun, 21 Jul 2019 16:55:44 -0400</pubDate>
       
       <guid>https://joegraham.co/about/</guid>
-      <description>Joe Graham Joe is a recent graduate of the Rochester Institute of Technology with a BS/MS in Computing Security. He has worked with organizations in both the private and public sector performing jobs ranging from systems administration to cybersecurity research in multiple domains. His interests lie in penetration testing and offensive security, especially with regards to networking devices like routers and firewalls.
-During his time at RIT, Joe has been active within the university&#39;s various cybersecurity organizations: RITSEC (formerly the RIT Cybersecurity Club (RC3) and the Security Practices and Research Student Association), and the Collegiate Cyber Defense Competition team as a competitor and as an assistant coach.</description>
+      <description>![image of Joe](/about_me.jpg) Joe Graham Joe is a recent graduate of the Rochester Institute of Technology with a BS/MS in Computing Security. He has worked with organizations in both the private and public sector performing jobs ranging from systems administration to cybersecurity research in multiple domains. His interests lie in penetration testing and offensive security, especially with regards to networking devices like routers and firewalls.
+During his time at RIT, Joe has been active within the university&amp;rsquo;s various cybersecurity organizations: RITSEC (formerly the RIT Cybersecurity Club (RC3) and the Security Practices and Research Student Association), and the Collegiate Cyber Defense Competition team as a competitor and as an assistant coach.</description>
     </item>
     
     <item>
