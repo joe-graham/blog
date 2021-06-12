@@ -16,9 +16,10 @@
     <meta property="og:title" content="Hack The Box Write-up: Networked" />
 <meta property="og:description" content="A write-up of the exploit process for the Networked box on HTB." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://joegraham.co/posts/networked/" />
+<meta property="og:url" content="https://joegraham.co/posts/networked/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-08-30T16:06:17-04:00" />
 <meta property="article:modified_time" content="2019-08-30T16:06:17-04:00" />
+
 
 
     
@@ -55,7 +56,7 @@
     <link rel="icon" type="image/png" href="https://joegraham.co/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://joegraham.co/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.67.0" />
+    <meta name="generator" content="Hugo 0.83.1" />
   </head>
 
   <body class=" ">
@@ -76,10 +77,6 @@
         
           <li class="navigation-item">
             <a class="navigation-link" href="https://joegraham.co/about">About</a>
-          </li>
-        
-          <li class="navigation-item">
-            <a class="navigation-link" href="https://joegraham.co/press_releases">Press Releases</a>
           </li>
         
       
@@ -190,7 +187,7 @@ generate the filename used for each upload, and to verify that an uploaded file&
 upload.php contains the code to process uploads as well as to display the upload form.</p>
 <p><img src="https://joegraham.co/posts/networked/upload_source.png" alt="upload.php source code"></p>
 <p>As we can see in the above code, the file is first checked using the check_file_type function loaded from lib.php to determine if the file
-has a MIME data type that starts with &ldquo;image/&quot;. The code also checks to see if the uploaded file extension is .jpg, .png, .gif, or .jpeg. If both checks pass the
+has a MIME data type that starts with &ldquo;image/&rdquo;. The code also checks to see if the uploaded file extension is .jpg, .png, .gif, or .jpeg. If both checks pass the
 uploaded file is moved to the upload directory with the name changed to match the uploading IP address.</p>
 <p>The if statement with the data type check also contains a check that the uploaded file is less than 60000 bytes. This
 appears to be a programming error, since the use of the logical and would allow a non-image file with a size greater than 60000 bytes to pass
@@ -271,7 +268,7 @@ into systemd network scripts. Overall, this was a fairly easy box that reinforce
       <footer class="footer">
   <section class="container">
     
-     © 2020
+     © 2021
     
        · 
       Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
