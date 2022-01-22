@@ -6,15 +6,14 @@
     <description>Recent content on Joe Graham</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Aug 2019 16:06:17 -0400</lastBuildDate><atom:link href="https://joegraham.co/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 21 Jan 2022 19:23:53 -0400</lastBuildDate><atom:link href="https://joegraham.co/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Press Releases</title>
-      <link>https://joegraham.co/press_releases/</link>
-      <pubDate>Sat, 08 Feb 2020 17:36:09 -0500</pubDate>
+      <title>Porting an Exploit for CVE-2016-6366</title>
+      <link>https://joegraham.co/posts/asa_cve_2016_6366/content/</link>
+      <pubDate>Fri, 21 Jan 2022 19:23:53 -0400</pubDate>
       
-      <guid>https://joegraham.co/press_releases/</guid>
-      <description>Work I do with the NY Office of the Attorney General that is publicly announced:
- Shopin - Investigation into a fraudulent initial coin offering. Assisted with investigative infrastructure management and security questions related to this investigation.  </description>
+      <guid>https://joegraham.co/posts/asa_cve_2016_6366/content/</guid>
+      <description>A few years ago I wrote a blog post for a class I was taking in school exploring the Cisco Adaptive Security Appliance and trying to port the exploit to a known vulnerable version of the firmware that did not yet have an exploit written for it. As you can see from how the post ends, I ran out of time that semester and was unable to finish the exploit.</description>
     </item>
     
     <item>
@@ -53,8 +52,8 @@ Enumeration First things first, let&amp;rsquo;s nmap the box to see what service
       <pubDate>Sun, 21 Jul 2019 16:55:44 -0400</pubDate>
       
       <guid>https://joegraham.co/about/</guid>
-      <description>![image of Joe](/about_me.jpg) Joe Graham Joe is a recent graduate of the Rochester Institute of Technology with a BS/MS in Computing Security. He has worked with organizations in both the private and public sector performing jobs ranging from systems administration to cybersecurity research in multiple domains. His interests lie in penetration testing and offensive security, especially with regards to networking devices like routers and firewalls.
-During his time at RIT, Joe has been active within the university&amp;rsquo;s various cybersecurity organizations: RITSEC (formerly the RIT Cybersecurity Club (RC3) and the Security Practices and Research Student Association), and the Collegiate Cyber Defense Competition team as a competitor and as an assistant coach.</description>
+      <description>Joe Graham Joe is a 2019 graduate of the Rochester Institute of Technology with a BS/MS in Computing Security. He has worked with organizations in both the private and public sector performing jobs ranging from systems administration to cybersecurity research in multiple domains. His interests lie in penetration testing and offensive security, especially with regards to networking devices like routers and firewalls.
+During his time at RIT, Joe was active within the university&amp;rsquo;s various cybersecurity organizations: RITSEC (formerly the RIT Cybersecurity Club (RC3) and the Security Practices and Research Student Association), and the Collegiate Cyber Defense Competition team as a competitor and as an assistant coach.</description>
     </item>
     
     <item>

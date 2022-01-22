@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Joe Graham</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Aug 2019 16:06:17 -0400</lastBuildDate><atom:link href="https://joegraham.co/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 21 Jan 2022 19:23:53 -0400</lastBuildDate><atom:link href="https://joegraham.co/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Porting an Exploit for CVE-2016-6366</title>
+      <link>https://joegraham.co/posts/asa_cve_2016_6366/content/</link>
+      <pubDate>Fri, 21 Jan 2022 19:23:53 -0400</pubDate>
+      
+      <guid>https://joegraham.co/posts/asa_cve_2016_6366/content/</guid>
+      <description>A few years ago I wrote a blog post for a class I was taking in school exploring the Cisco Adaptive Security Appliance and trying to port the exploit to a known vulnerable version of the firmware that did not yet have an exploit written for it. As you can see from how the post ends, I ran out of time that semester and was unable to finish the exploit.</description>
+    </item>
+    
     <item>
       <title>Hack The Box Write-up: Networked</title>
       <link>https://joegraham.co/posts/networked/</link>
