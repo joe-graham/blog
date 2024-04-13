@@ -1,0 +1,37 @@
+baseURL = "https://joe-graham.github.io/"
+languageCode = "en-us"
+title = "Joe Graham"
+theme = ["hugo-video", "hugo-coder"]
+
+paginate = 20
+canonifyurls = true
+
+[params]
+	author = "Joe Graham"
+	info = "Penetration tester/offensive cyber security guy"
+	description = "Joe Graham's website and blog"
+	keywords = "blog,cybersecurity,infosec,pentest,offsec"
+	avatarurl="/about_me.jpg"
+	custom_css = ["lightbox/lightbox.css"]
+
+[markup.goldmark.renderer]
+unsafe = true
+[[params.social]]
+	name = "Github"
+	icon = "fab fa-github fa-2x"
+	weight = 1
+	url = "https://github.com/joe-graham"
+[[params.social]]
+     name = "Twitter"
+     icon = "fab fa-twitter fa-2x"
+     weight = 2
+     url = "http://twitter.com/joegraham901"
+
+[[menu.main]]
+	name = "Blog"
+	weight = 1
+	url = "/posts/"
+[[menu.main]]
+	name = "About"
+	weight = 2
+	url = "/about"
