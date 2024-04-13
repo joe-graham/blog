@@ -1,4 +1,4 @@
-baseURL = "https://joe-graham.github.io/"
+baseURL = "https://joegraham.co/"
 languageCode = "en-us"
 title = "Joe Graham"
 theme = ["hugo-video", "hugo-coder"]
