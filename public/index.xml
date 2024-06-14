@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Joe Graham</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Joe Graham</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 15 Apr 2024 09:05:17 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hack The Box Write-up: iClean</title>
+      <link>http://localhost:1313/posts/iclean/</link>
+      <pubDate>Mon, 15 Apr 2024 09:05:17 -0400</pubDate>
+      <guid>http://localhost:1313/posts/iclean/</guid>
+      <description>iClean is a Linux box created by LazyTitan33 that is rated medium by the HTB community. iClean&amp;rsquo;s exploit process involves exploiting a web application vulnerable to blind cross-site scripting (XSS), server-side template injection (SSTI), and then privilege escalation via an arbitrary write as root vulnerability in the sudo configuration.&#xA;Enumeration As usual, we start by enumerating the open ports and services on the system.&#xA;# Nmap 7.94SVN scan initiated Mon Apr 15 12:07:52 2024 as: nmap -p- -sV -oA 10.</description>
+    </item>
+    <item>
+      <title>Porting an Exploit for CVE-2016-6366</title>
+      <link>http://localhost:1313/posts/asa_cve_2016_6366/content/</link>
+      <pubDate>Fri, 21 Jan 2022 19:23:53 -0400</pubDate>
+      <guid>http://localhost:1313/posts/asa_cve_2016_6366/content/</guid>
+      <description>A few years ago I wrote a blog post for a class I was taking in school exploring the Cisco Adaptive Security Appliance and trying to port the exploit to a known vulnerable version of the firmware that did not yet have an exploit written for it. As you can see from how the post ends, I ran out of time that semester and was unable to finish the exploit.</description>
+    </item>
+    <item>
+      <title>Hack The Box Write-up: Networked</title>
+      <link>http://localhost:1313/posts/networked/</link>
+      <pubDate>Fri, 30 Aug 2019 16:06:17 -0400</pubDate>
+      <guid>http://localhost:1313/posts/networked/</guid>
+      <description>Networked is a Linux box created by Guly that is rated fairly easily by the HTB community. Even though it was fairly easy, I got some good practice with command injection vulnerabilities and circumventing file verification methods.&#xA;Enumeration Let&amp;rsquo;s start by taking a look at what services are running on the box using nmap.&#xA;Starting Nmap 7.80 ( https://nmap.org ) at 2019-08-30 16:16 EDT Nmap scan report for 10.10.10.146 Host is up (0.</description>
+    </item>
+    <item>
+      <title>Hack The Box Write-up: Bastion</title>
+      <link>http://localhost:1313/posts/bastion/</link>
+      <pubDate>Mon, 05 Aug 2019 17:31:48 -0400</pubDate>
+      <guid>http://localhost:1313/posts/bastion/</guid>
+      <description>This is my first in a series of write-ups on systems I&amp;rsquo;ve successfully exploited on HackTheBox. Bastion is a Windows host that at the time of writing has been rated fairly easy by other hackers, which was my experience as well. However, this system was still a fun system to exploit with a novel way of getting user access.&#xA;Enumeration First things first, let&amp;rsquo;s nmap the box to see what services the box has running.</description>
+    </item>
+    <item>
+      <title>CVE-2019-1576: PAN-OS Command Injection/Shell Escape</title>
+      <link>http://localhost:1313/posts/cve_2019_1576/</link>
+      <pubDate>Mon, 22 Jul 2019 17:15:07 -0400</pubDate>
+      <guid>http://localhost:1313/posts/cve_2019_1576/</guid>
+      <description>Earlier this year I was helping RIT&amp;rsquo;s Collegiate Cyber Defense Competition (CCDC) team prepare to compete at the national competition by looking into possible attack vectors that the red team would be using to exploit the team&amp;rsquo;s infrastructure and how to defend against those attacks. Nick O&amp;rsquo;Brien and I decided to look into the Palo Alto Networks virtual firewall product to find potential pain points for the team, as PAN has been a sponsor for the competition for the last few years and has frequently provided equipment and VMs to teams for use during the competition.</description>
+    </item>
+    <item>
+      <title>About Me</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Sun, 21 Jul 2019 16:55:44 -0400</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>Joe Graham Hello! I&amp;rsquo;m Joe Graham, I&amp;rsquo;m a 2019 graduate of the Rochester Institute of Technology with a BS/MS in Computing Security. I&amp;rsquo;ve worked with organizations in both the private and public sector performing jobs ranging from systems administration to cybersecurity research in multiple domains, and I currently work as a cybersecurity analyst in the public sector. My main cybersecurity interests lie in penetration testing and offensive security.&#xA;During my time at RIT, I was active within the university&amp;rsquo;s various cybersecurity organizations: RITSEC (formerly the RIT Cybersecurity Club and the Security Practices and Research Student Association), and the Collegiate Cyber Defense Competition team as a competitor and as an assistant coach.</description>
+    </item>
+    <item>
+      <title>Hello!</title>
+      <link>http://localhost:1313/posts/first/</link>
+      <pubDate>Sun, 21 Jul 2019 11:09:28 -0400</pubDate>
+      <guid>http://localhost:1313/posts/first/</guid>
+      <description>Hello! My name is Joe Graham, and welcome to my blog! I am a cybersecurity professional who specializes in penetration testing and offensive security. I plan to include things like HackTheBox write-ups and posts about penetration testing or participating in bug bounties/vulnerability disclosure. Thanks for visiting!</description>
+    </item>
+  </channel>
+</rss>

